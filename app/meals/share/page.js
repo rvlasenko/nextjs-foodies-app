@@ -2,12 +2,12 @@
 
 import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
-import MealsFormSubmit from "@/components/meals/meals-form-submit";
 import { shareMeal } from "@/lib/actions";
-import { useActionState } from "react";
+import { useFormStatus, useFormState } from "react-dom";
 
 export default function ShareMealPage() {
-  const [state, formAction] = useActionState(shareMeal, { message: null });
+  const [state, formAction] = useFormState(shareMeal, { message: null });
+  const { pending } = useFormStatus();
 
   return (
     <>
@@ -49,7 +49,9 @@ export default function ShareMealPage() {
           <ImagePicker label="Your image" name="image" />
           {state.message && <p>{state.message}</p>}
           <p className={classes.actions}>
-            <MealsFormSubmit />
+            <button disabled={pending}>
+              {pending ? "Submitting..." : "Share Meal"}
+            </button>
           </p>
         </form>
       </main>
