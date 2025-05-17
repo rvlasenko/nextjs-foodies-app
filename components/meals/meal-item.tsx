@@ -2,8 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 import classes from "./meal-item.module.css";
+import { IMeal } from "@/lib/meals";
 
-export default function MealItem({ title, slug, image, summary, creator }) {
+export default function MealItem({
+  title,
+  slug,
+  image,
+  summary,
+  creator,
+}: Omit<IMeal, "instructions">) {
   return (
     <article className={classes.meal}>
       <header>

@@ -6,7 +6,11 @@ export const metadata = {
   description: "Delicious meals, shared by a food-loving community.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>

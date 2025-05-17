@@ -2,11 +2,13 @@
 
 import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
-import { shareMeal } from "@/lib/actions";
+import { MealFormState, shareMeal } from "@/lib/actions";
 import { useFormStatus, useFormState } from "react-dom";
 
 export default function ShareMealPage() {
-  const [state, formAction] = useFormState(shareMeal, { message: null });
+  const [state, formAction] = useFormState<MealFormState, FormData>(shareMeal, {
+    message: null,
+  });
   const { pending } = useFormStatus();
 
   return (
@@ -42,7 +44,7 @@ export default function ShareMealPage() {
             <textarea
               id="instructions"
               name="instructions"
-              rows="10"
+              rows={10}
               required
             ></textarea>
           </p>

@@ -3,7 +3,11 @@ import classes from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const meal = getMeal(params.slug);
 
   if (!meal) {
@@ -16,7 +20,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function MealDetails({ params }) {
+export default function MealDetails({ params }: { params: { slug: string } }) {
   const meal = getMeal(params.slug);
 
   if (!meal) {
