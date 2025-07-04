@@ -31,18 +31,19 @@ export function getMeal(slug: string) {
 }
 
 export async function saveMeal(meal: IMeal) {
-  meal.slug = slugify(meal.title, { lower: true });
+  meal.slug = slugify(meal.title, { lower: true, remove: /[*+~.()'"!:@]/g });
   meal.instructions = xss(meal.instructions);
 
-  const extension = meal.image.name.split(".").pop();
+  const image = meal.image as File;
+  const extension = image.name.split(".").pop();
   const fileName = `${meal.slug}.${extension}`;
-  const bufferedImage = await meal.image.arrayBuffer();
+  const bufferedImage = await image.arrayBuffer();
 
   s3.putObject({
     Bucket: "rvlasenko-nextjs-demo-users-image",
     Key: fileName,
     Body: Buffer.from(bufferedImage),
-    ContentType: meal.image.type,
+    ContentType: image.type,
   });
 
   meal.image = fileName;

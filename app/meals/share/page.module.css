@@ -7,6 +7,21 @@
   font-size: 1.5rem;
 }
 
+.error {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.message {
+  background-color: #feebc8;
+  color: #9c4221;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
 .header h1 {
   font-family: "Montserrat", sans-serif;
 }

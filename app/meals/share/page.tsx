@@ -25,19 +25,33 @@ export default function ShareMealPage() {
             <p>
               <label htmlFor="name">Your name</label>
               <input type="text" id="name" name="name" required />
+              {state.errors?.creator && (
+                <span className={classes.error}>{state.errors.creator}</span>
+              )}
             </p>
             <p>
               <label htmlFor="email">Your email</label>
               <input type="email" id="email" name="email" required />
+              {state.errors?.creator_email && (
+                <span className={classes.error}>
+                  {state.errors.creator_email}
+                </span>
+              )}
             </p>
           </div>
           <p>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" name="title" required />
+            {state.errors?.title && (
+              <span className={classes.error}>{state.errors.title}</span>
+            )}
           </p>
           <p>
             <label htmlFor="summary">Short Summary</label>
             <input type="text" id="summary" name="summary" required />
+            {state.errors?.summary && (
+              <span className={classes.error}>{state.errors.summary}</span>
+            )}
           </p>
           <p>
             <label htmlFor="instructions">Instructions</label>
@@ -47,9 +61,15 @@ export default function ShareMealPage() {
               rows={10}
               required
             ></textarea>
+            {state.errors?.instructions && (
+              <span className={classes.error}>{state.errors.instructions}</span>
+            )}
           </p>
           <ImagePicker label="Your image" name="image" />
-          {state.message && <p>{state.message}</p>}
+          {state.errors?.image && (
+            <span className={classes.error}>{state.errors.image}</span>
+          )}
+          {state.message && <p className={classes.message}>{state.message}</p>}
           <p className={classes.actions}>
             <button disabled={pending}>
               {pending ? "Submitting..." : "Share Meal"}
